@@ -13,11 +13,11 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Optional;
 
-@AlexaIntentListener(customIntents = "FindPokemon")
-public class FindPokemonHandler implements AlexaIntentHandler {
+@AlexaIntentListener(customIntents = "SearchForSpecificPokemonIntent")
+public class SearchForSpecificPokemonIntentHandler implements AlexaIntentHandler {
     @Override
     public AlexaOutput handleRequest(AlexaInput input) throws AlexaRequestHandlerException, AlexaStateException {
-        final String pokemon = input.getSlotValue("Pokemon");
+        final String pokemon = input.getSlotValue("pokemon");
 
         final Optional<Pair<Double, Double>> longlat = PokemonFinder.find(pokemon);
 
@@ -43,6 +43,6 @@ public class FindPokemonHandler implements AlexaIntentHandler {
 
     @Override
     public boolean verify(final AlexaInput input) {
-        return true;
+        return input.hasSlotNotBlank("pokemon");
     }
 }
