@@ -40,23 +40,30 @@ public class CityMapper {
 		
 		System.err.println(endAddress);
 
+		String transitDepart = null;
+		String transitArrive = null;
+		
 		for (DirectionsRoute route : result.routes) {
 			for (DirectionsLeg leg : route.legs) {
-				System.err.println(leg.startAddress);
-				System.err.println(leg.endAddress);
-
+				
 				for (DirectionsStep step : leg.steps) {
-					System.err.println(step.travelMode);
+					
 					if (step.transitDetails != null) {
-						System.err.println(step.transitDetails.departureStop.name);
-						System.err.println(step.transitDetails.arrivalStop.name);
-						System.err.println(step.transitDetails.line.name);
+						transitDepart = step.transitDetails.departureStop.name;
+						transitArrive = step.transitDetails.arrivalStop.name;
+						break;
 
 					}
 				}
 			}
 		}
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("Your nearest pokemon is at " + endAddress + ".");
+		if(transitDepart != null && transitArrive != null) {
+			builder.append(" Your journey begins at " + transitDepart + ", from where you will go to " + transitArrive );
+		}
 
-		return "Your nearest pokemon is at " + endAddress;
+		return builder.toString();
 	}
 }
