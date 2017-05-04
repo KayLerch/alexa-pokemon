@@ -1,0 +1,17 @@
+SayWelcome:
+  Utterances:
+    - "Hi. What Pokemon should I find?"
+  Reprompts:
+    - "Say the name of a Pokemon or ask me for help."
+
+SayHelp:
+  Utterances:
+    - "I can find Pokemons for you and guide you to the place where it is. Just say Find followed by the name of the Pokemon."
+  Reprompts:
+    - " Just say Find followed by the name of the Pokemon."
+
+SaySorry:
+  Utterances:
+    - "[Excuse me|Sorry|I am sorry], I could not understand what you were saying."
+  Reprompts:
+    - "Say something like <p>${SamplePhrases}</p> in ${Languages}"
