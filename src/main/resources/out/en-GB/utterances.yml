@@ -1,26 +1,27 @@
 SayWelcome:
   Utterances:
-    - "Hi. What Pokemon should I find?"
+    - "Hi. Say the three words that make up a square."
   Reprompts:
-    - "Say the name of a Pokemon or ask me for help."
+    - "Say the three words that make up a square or ask me for help."
 
-SayFoundPokemon:
+SayFoundLocation:
   Utterances:
-    - "${ssml}"
+    - "{ssml}"
   Reprompts:
-    - "${ssml}"
+    - "{ssml}"
 
-SayFoundNoPokemon:
-  - "Sorry I could not find any ${pokemon} near you."
+SayFoundNoLocation:
+  - "Sorry I could not find any place for {s1} {s2} {s3}."
+
+SayOk:
+  - "Ok."
 
 SayHelp:
   Utterances:
-    - "I can find Pokemons for you and guide you to the place where it is. Just say Find followed by the name of the Pokemon."
+    - "Say the three words that make up a square"
   Reprompts:
-    - " Just say Find followed by the name of the Pokemon."
+    - "Say the three words that make up a square"
 
 SaySorry:
   Utterances:
     - "[Excuse me|Sorry|I am sorry], I could not understand what you were saying."
-  Reprompts:
-    - "Say something like <p>${SamplePhrases}</p> in ${Languages}"

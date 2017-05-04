@@ -2,18 +2,16 @@ package io.klerch.alexa.pokemon.api;
 
 import java.io.IOException;
 
+import io.klerch.alexa.pokemon.SkillConfig;
 import org.joda.time.DateTime;
-import org.junit.Test;
 
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
-import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.DirectionsLeg;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.DirectionsStep;
-import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 import com.google.maps.model.TravelMode;
 
@@ -25,7 +23,7 @@ public class CityMapper {
 	
 
 	public static String getRouteToPokemon(final double longitude, final double latitude) throws ApiException, InterruptedException, IOException {
-		GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyBiUikU1C1pYgqE5DWbFYqZGmn_PGktu2k");
+		GeoApiContext context = new GeoApiContext().setApiKey(SkillConfig.getProperty("GoogleApiKey"));
 		DateTime now = new DateTime();
 		DirectionsResult result = DirectionsApi.newRequest(context).mode(TravelMode.TRANSIT)
 				.origin(new LatLng(originLatitude, originLongitude))
