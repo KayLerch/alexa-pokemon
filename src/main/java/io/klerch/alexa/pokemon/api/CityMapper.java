@@ -19,9 +19,9 @@ import com.google.maps.model.TravelMode;
 
 public class CityMapper {
 
-	private static final double originLongitude = -0.136138;
+	private static final double originLongitude = -0.098242;
 
-	private static final double originLatitude = 51.510453;
+	private static final double originLatitude =  51.521591;
 
 	public static String getRouteToPokemon(final double longitude, final double latitude) {
 		try {
