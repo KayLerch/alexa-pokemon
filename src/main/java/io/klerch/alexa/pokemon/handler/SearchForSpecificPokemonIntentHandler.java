@@ -26,7 +26,7 @@ public class SearchForSpecificPokemonIntentHandler implements AlexaIntentHandler
 
             if (!StringUtils.isNotBlank(ssml)) {
                 return AlexaOutput.ask("SayFoundPokemon")
-                        .putSlot("ssml", ssml)
+                        .putSlot("ssml", "Here is your direction to the next " + pokemon + ". " + ssml)
                         .withReprompt(true)
                         .build();
             }
