@@ -4,14 +4,17 @@ SayWelcome:
   Reprompts:
     - "Say the three words that make up a square or ask me for help."
 
-SayFoundPokemon:
+SayFoundLocation:
   Utterances:
     - "{ssml}"
   Reprompts:
     - "{ssml}"
 
-SayFoundNoPokemon:
+SayFoundNoLocation:
   - "Sorry I could not find any place for {s1} {s2} {s3}."
+
+SayOk:
+  - "Ok."
 
 SayHelp:
   Utterances:

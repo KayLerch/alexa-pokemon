@@ -12,7 +12,6 @@ import io.klerch.alexa.tellask.util.AlexaRequestHandlerException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.io.IOException;
 import java.util.Optional;
 
 @AlexaIntentListener(customIntents = "GetRouteIntent")
@@ -23,25 +22,19 @@ public class GetRouteIntentHandler implements AlexaIntentHandler {
         final String s2 = input.getSlotValue("wordTwo");
         final String s3 = input.getSlotValue("wordThree");
 
-        try {
+
             final Optional<Pair<Double, Double>> longlat = What3Words.resolve(s1, s2, s3);
             if (longlat.isPresent()) {
                 final String ssml = CityMapper.getRouteToPokemon(longlat.get().getLeft(), longlat.get().getRight());
 
                 if (StringUtils.isNotBlank(ssml)) {
                     return AlexaOutput.tell("SayFoundLocation")
-                            .putSlot("ssml", "Here is your direction to " + s1 + " " + s2  + " " + s3  + ". " + ssml)
+                            .putSlot("ssml", "Here is your direction to " + s1 + " " + s2 + " " + s3 + ". " + ssml)
                             .withReprompt(true)
                             .build();
                 }
+
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ApiException e) {
-            e.printStackTrace();
-        }
         return AlexaOutput.tell("SayFoundNoLocation")
                 .putSlot("s1", s1)
                 .putSlot("s2", s1)
@@ -56,6 +49,6 @@ public class GetRouteIntentHandler implements AlexaIntentHandler {
 
     @Override
     public boolean verify(final AlexaInput input) {
-        return input.hasSlotNotBlank("pokemon");
+        return true;
     }
 }

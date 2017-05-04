@@ -2,8 +2,8 @@ package io.klerch.alexa.pokemon.api;
 
 import java.io.IOException;
 
+import io.klerch.alexa.pokemon.SkillConfig;
 import org.joda.time.DateTime;
-import org.junit.Test;
 
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
@@ -25,7 +25,7 @@ public class CityMapper {
 
 	public static String getRouteToPokemon(final double longitude, final double latitude) {
 		try {
-			GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyBiUikU1C1pYgqE5DWbFYqZGmn_PGktu2k");
+			GeoApiContext context = new GeoApiContext().setApiKey(SkillConfig.getProperty("GoogleApiKey"));
 			DateTime now = new DateTime();
 			DirectionsResult result = DirectionsApi.newRequest(context).mode(TravelMode.TRANSIT)
 					.origin(new LatLng(originLatitude, originLongitude)).destination(new LatLng(latitude, longitude))
@@ -64,7 +64,7 @@ public class CityMapper {
 			}
 
 			StringBuilder builder = new StringBuilder();
-			builder.append("Your nearest pokemon is at " + endAddress + ".");
+			builder.append("Your directions are " + endAddress + ".");
 			if (transitDepart != null && transitArrive != null) {
 				builder.append(
 						" Your journey begins at " + transitDepart + ", from where you will go to " + transitArrive);
@@ -72,7 +72,7 @@ public class CityMapper {
 
 			return builder.toString();
 		} catch (Exception e) {
-			return "Your pokemon is shy. I can't help you find her.";
+			return "I could not find any directions.";
 		}
 	}
 }
