@@ -4,6 +4,15 @@ SayWelcome:
   Reprompts:
     - "Say the name of a Pokemon or ask me for help."
 
+SayFoundPokemon:
+  Utterances:
+    - "${ssml}"
+  Reprompts:
+    - "${ssml}"
+
+SayFoundNoPokemon:
+  - "Sorry I could not find any ${pokemon} near you."
+
 SayHelp:
   Utterances:
     - "I can find Pokemons for you and guide you to the place where it is. Just say Find followed by the name of the Pokemon."
